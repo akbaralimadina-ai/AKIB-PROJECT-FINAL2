@@ -1,0 +1,36 @@
+➡️ Cell 1 — Install dependency
+!pip install -q streamlit google-generativeai cloudflared
+
+➡️ Cell 2 — Masukkan API Key (otomatis membuat secrets.toml)
+import os
+
+API_KEY = "ISI_API_KEY_MU_DISINI"  # ganti dengan API Key kamu
+
+os.makedirs("/root/.streamlit", exist_ok=True)
+
+with open("/root/.streamlit/secrets.toml", "w") as f:
+    f.write(f"GEMINI_API_KEY = '{API_KEY}'")
+
+print("API key saved successfully!")
+
+➡️ Cell 3 — Clone repository GitHub kamu
+
+(Ganti USERNAME dan repo name nanti setelah kamu upload)
+
+!rm -rf project-gemini-chatbot
+!git clone https://github.com/USERNAME/project-gemini-chatbot.git
+%cd project-gemini-chatbot
+
+➡️ Cell 4 — Jalankan Streamlit
+!streamlit run app.py &>/content/logs.txt &
+
+➡️ Cell 5 — Buat URL publik via Cloudflare Tunnel
+!cloudflared tunnel --url http://localhost:8501 --no-autoupdate
+
+
+Setelah itu akan muncul link seperti:
+
+https://happy-sunset-blue.trycloudflare.com
+
+
+Tinggal klik → aplikasi langsung terbuka.
