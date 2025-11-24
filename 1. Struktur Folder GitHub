@@ -1,0 +1,6 @@
+project-gemini-chatbot/
+│
+├── app.py
+├── requirements.txt
+├── run_colab.ipynb
+└── README.md
